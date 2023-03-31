@@ -118,10 +118,10 @@ def Logout(request):
 @csrf_exempt
 def Register(request):
     if request.method =='POST':
-        fname = request.POST['fname']
-        lname = request.POST['lname']
+        fname    = request.POST['fname']
+        lname    = request.POST['lname']
         username = request.POST['uname']
-        email = request.POST['email']
+        email    = request.POST['email']
         password = request.POST['pass']
         confirm_pass = request.POST['pass2']
 
@@ -158,10 +158,6 @@ def Register(request):
                     new_user.save()
                     return redirect('login')
 
-
-                # save_new_user = AllUsers(first_name=fname, last_name=lname, username=username, email=email)
-                # save_new_user.save()
-                
 
         except:
             return HttpResponse('Error, Something Went wrong:'+str(halpMe) )
