@@ -136,18 +136,22 @@ def Register(request):
         
         try:
             all_users = User.objects.filter(username=username)
-            
+            halpMe=0
             if all_users.exists():
+                halpMe = 1
                 return HttpResponse(f'A user with username "{username}" already exixts. Pick another name!')
 
             else:
                 if '-superuser' in username:
+                    halpMe = 2
                     splitted = username.split("-")
                     s_uname = splitted[0]
                     new_super_user = User.objects.create_superuser(username=s_uname, email=email, password=password)
                     new_super_user.save()
                     return redirect('login')
                 else:
+                    halpMe = 3
+
                     new_user = User.objects.create_user(username=username, email=email, password=password)
                     new_user.first_name = fname
                     new_user.last_name = lname
@@ -160,7 +164,7 @@ def Register(request):
                 
 
         except:
-            return HttpResponse('Error, Something Went wrong')
+            return HttpResponse('Error, Something Went wrong:'+halpMe )
 
     return render(request, 'td/reg.html', {})
 
