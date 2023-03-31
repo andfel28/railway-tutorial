@@ -164,7 +164,7 @@ def Register(request):
                 
 
         except:
-            return HttpResponse('Error, Something Went wrong:'+halpMe )
+            return HttpResponse('Error, Something Went wrong:'+str(halpMe) )
 
     return render(request, 'td/reg.html', {})
 
