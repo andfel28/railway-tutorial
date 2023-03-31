@@ -158,9 +158,10 @@ def Register(request):
                     new_user.save()
                     return redirect('login')
 
+        except Exception as err:
+            return HttpResponse(f"Unexpected {err=}, {type(err)=}")
 
-        except:
-            return HttpResponse('Error, Something Went wrong:'+str(halpMe) )
+
 
     return render(request, 'td/reg.html', {})
 
